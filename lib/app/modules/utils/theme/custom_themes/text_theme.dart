@@ -1,6 +1,7 @@
-import 'package:b_partner/common/styles/style.dart';
-import 'package:b_partner/utils/constants/colors.dart';
+
 import 'package:flutter/material.dart';
+import 'package:homework_app/app/common/style/style.dart';
+import 'package:homework_app/app/modules/utils/constants/colors.dart';
 
 class TTextTheme {
   TTextTheme._();

@@ -1,9 +1,10 @@
-import 'package:b_partner/utils/translations/en_us.dart';
-import 'package:b_partner/utils/translations/km_kh.dart';
-import 'package:b_partner/utils/translations/vi_vn.dart';
-import 'package:b_partner/utils/translations/zh_cn.dart';
-import 'package:b_partner/utils/translations/zh_tw.dart';
+
 import 'package:get/get.dart';
+import 'package:homework_app/app/modules/utils/translations/en_us.dart';
+import 'package:homework_app/app/modules/utils/translations/km_kh.dart';
+import 'package:homework_app/app/modules/utils/translations/vi_vn.dart';
+import 'package:homework_app/app/modules/utils/translations/zh_cn.dart';
+import 'package:homework_app/app/modules/utils/translations/zh_tw.dart';
 
 class AppTranslations extends Translations {
   @override

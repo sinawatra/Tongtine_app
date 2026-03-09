@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homework_app/app/common/style/style.dart';
+import 'package:homework_app/app/modules/utils/constants/colors.dart';
 
-import '../../utils/constants/colors.dart';
-import '../styles/style.dart';
 
 class NoInternetOverlay extends StatefulWidget {
   const NoInternetOverlay({super.key});

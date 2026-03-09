@@ -12,7 +12,7 @@ void main() {
       getPages: AppPages.routes,
       showPerformanceOverlay: false,
       fallbackLocale: Locale('en', 'US'),
-      //  translations: AppTranslations(),
+      //  translations: AppTranslations(),R
       // builder: (BuildContext context, Widget? child) {
       //     return EasyLoading.init()(
       //       context,

@@ -1,5 +1,6 @@
-import 'package:b_partner/utils/theme/custom_themes/text_theme.dart';
+
 import 'package:flutter/material.dart';
+import 'package:homework_app/app/modules/utils/theme/custom_themes/text_theme.dart';
 
 class TAppTheme {
   TAppTheme._();
