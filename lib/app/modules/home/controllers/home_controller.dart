@@ -22,5 +22,17 @@ class HomeController extends GetxController {
     } catch (e) {
       throw e.toString();
      }
-      }
+    }
+
+
+    // Future<void> createGroup () async {
+    //   try {
+    //     final response = await homeRepository.createGroup();
+    //     if(response.body["success"]){
+    //       Get.snackbar("Success", "Group created successfully");
+    //     }
+    //   } catch (e) {
+    //     throw e.toString();
+    //    }
+    // }
 }
