@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:homework_app/app/routes/app_pages.dart';
 
 import 'controllers/splash.controller.dart';
 
 class SplashScreen extends GetView<SplashController> {
   const SplashScreen({super.key});
+
+  afterSplash() async {
+    await Future.delayed(const Duration(seconds: 2));
+    Get.offNamed(Routes.AUTHENTICATION);
+  }
+
   @override
   Widget build(BuildContext context) {
+    afterSplash();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashScreen'),
-        centerTitle: true,
-      ),
       body: const Center(
         child: Text(
-          'SplashScreen is working',
+          'តុងទីន',
           style: TextStyle(fontSize: 20),
         ),
       ),

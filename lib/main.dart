@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final sharedPreferences = await SharedPreferences.getInstance();
+  Get.put(sharedPreferences);
   runApp(
     GetMaterialApp(
       title: "Application",
