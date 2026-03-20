@@ -1,7 +1,7 @@
 class AppConstants {
-  static const String baseURLDev = 'https://api-partner-dev.beasy.info/';
-  static const String baseURlStaging = 'https://api-partner-staging.beasy.info/';
-  static const String baseURLProd = 'https://api-partner.beasy.info/';
+  static const String baseURLDev = 'https://tongtin.onrender.com/';
+  static const String baseURlStaging = 'https://tongtin.onrender.com/';
+  static const String baseURLProd = 'https://tongtin.onrender.com/';
 
 
   //random 
@@ -10,14 +10,13 @@ class AppConstants {
   static const String phoneSupport = "+855 10 957 098";
   
   //Authentication
-  static const String sendOtp = 'api/v1/auth/otp/request';
-  static const String verifyCode = 'api/v1/auth/otp/verify';
-  static const String register = "api/v1/auth/register/complete";
+  static const String register = "/api/auth/register";
   static const String refreshtoken = 'api/v1/auth/refresh';
   static const String submitKycDocuments = "api/v1/kyc/documents";
   static const String extractId = "api/v1/kyc/extract-id";
   static const String postFCMToken = "api/v1/partners/device-token";
   static const String addWorkExperience = "api/v1/kyc/work-experience";
+  static const String login = "/api/auth/login";
   
   //Service Preferences
   static const String servicePerferences = 'api/v1/partners/categories';
@@ -55,5 +54,8 @@ class AppConstants {
   //notification 
   static const String getNotification = "api/v1/notifications";
   static const String markNotificationAsRead = "api/v1/notifications";
+
+
+  
   
 }
