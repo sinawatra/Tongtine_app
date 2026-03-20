@@ -8,7 +8,19 @@ class HomeController extends GetxController {
 
   final count = 0.obs;
 
+  RxList tontineGroup = <dynamic>[].obs;
+
 
 
   void increment() => count.value++;
+
+
+  Future<void> getTontineGroup() async {
+    try {
+      final response = await homeRepository.getTontineGroup();
+      tontineGroup.value = response.body["data"];
+    } catch (e) {
+      throw e.toString();
+     }
+      }
 }
