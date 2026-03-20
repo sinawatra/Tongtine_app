@@ -9,6 +9,8 @@ abstract class Routes {
   static const APPSCREEN = _Paths.APPSCREEN;
   static const NOTIFICATION = _Paths.NOTIFICATION;
   static const PROFILE = _Paths.PROFILE;
+  static const TONTINE_GROUP = _Paths.TONTINE_GROUP;
+  static const GROUP_DETAILS = _Paths.GROUP_DETAILS;
 }
 
 abstract class _Paths {
@@ -20,4 +22,6 @@ abstract class _Paths {
   static const APPSCREEN = "/appscreen";
   static const NOTIFICATION = "/notification";
   static const PROFILE = "/profile";
+  static const TONTINE_GROUP = "/tontine-group";
+  static const GROUP_DETAILS = "/group-details";
 }

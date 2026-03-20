@@ -6,6 +6,9 @@ import 'package:homework_app/app/modules/notification/binding%20/notification_bi
 import 'package:homework_app/app/modules/notification/view/notification_view.dart';
 import 'package:homework_app/app/modules/profile/binding/profile_binding.dart';
 import 'package:homework_app/app/modules/profile/view/profile_view.dart';
+import 'package:homework_app/app/modules/tontine_group/bindings/tontine_group_binding.dart';
+import 'package:homework_app/app/modules/tontine_group/views/tontine_group_details.dart';
+import 'package:homework_app/app/modules/tontine_group/views/tontine_group_view.dart';
 
 import '../modules/authentication/bindings/authentication_binding.dart';
 import '../modules/authentication/views/authentication_view.dart';
@@ -48,6 +51,16 @@ class AppPages {
       name: _Paths.AUTHENTICATION,
       page: () => const AuthenticationView(),
       binding: AuthenticationBinding(),
+    ),
+    GetPage(
+      name: _Paths.TONTINE_GROUP,
+      page: () => const TontineGroupView(),
+      binding: TontineGroupBinding(),
+    ),
+    GetPage(
+      name: _Paths.GROUP_DETAILS,
+      page: () => const TontineGroupDetails(),
+      binding: TontineGroupBinding(),
     ),
   ];
 }

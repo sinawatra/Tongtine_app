@@ -25,6 +25,7 @@ class AppscreenView extends GetView<AppscreenController> {
     return Obx(() {
       final index = controller.currentIndex.value;
       return Scaffold(
+        backgroundColor: Colors.white,
         body: LazyIndexedStack(index: index, children: screens),
         bottomNavigationBar: _BottomNavBar(
           currentIndex: index,
@@ -44,7 +45,7 @@ class _BottomNavBar extends StatelessWidget {
     return Container(
       height: 100,
       decoration: BoxDecoration(
-        color: Get.theme.scaffoldBackgroundColor,
+        color: Colors.white,
         boxShadow: const [
           BoxShadow(
             color: Color(0x191C1C1C),
