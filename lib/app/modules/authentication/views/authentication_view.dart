@@ -36,7 +36,7 @@ class AuthenticationView extends GetView<AuthenticationController> {
                           borderRadius: 24,
                           activeColor: true,
                           onPress: () {
-                            
+                            controller.signIn();
                           }
                            
                         ),

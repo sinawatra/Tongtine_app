@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homework_app/app/common/widgets/custom_loading_dialog.dart';
 import 'package:homework_app/app/data/service/secure_storage_service.dart' show SecureStorageService;
 import 'package:homework_app/app/modules/authentication/repository/authentication_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,12 +34,15 @@ class AuthenticationController extends GetxController {
       Get.snackbar("Error", "Please enter password");
       return;
     }
+      LoadingDialog.showDialog();
     final response = await authRepository.loginUser(phoneController.text, passwordController.text);
     if (response.success == true) {
       await secureStorageService.saveToken(response.body.token ?? '');
+      LoadingDialog.dismiss();
       return;
     }
-    
+    Get.snackbar("Error", response.message ?? '');
+    LoadingDialog.dismiss();
   }
 
 
