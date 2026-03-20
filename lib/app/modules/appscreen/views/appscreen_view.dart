@@ -5,8 +5,9 @@ import 'package:homework_app/app/common/style/style.dart';
 import 'package:homework_app/app/common/widgets/custom_lazyindexstack.dart';
 import 'package:homework_app/app/modules/appscreen/controllers/appscreen_controller.dart';
 import 'package:homework_app/app/modules/home/views/home_view.dart';
+import 'package:homework_app/app/modules/notification/view/notification_view.dart';
+import 'package:homework_app/app/modules/profile/view/profile_view.dart';
 import 'package:homework_app/app/modules/utils/constants/colors.dart';
-import 'package:homework_app/app/modules/utils/constants/image_constant.dart';
 
 
 
@@ -17,9 +18,8 @@ class AppscreenView extends GetView<AppscreenController> {
   Widget build(BuildContext context) {
     final screens = <Widget>[
       const HomeView(),
-      // const EarningView(),
-      // const MessageView(),
-      // const ProfileView(), // Removed const as it was not const in original
+      const NotificationView(),
+      const ProfileView(),
     ];
 
     return Obx(() {
@@ -61,39 +61,28 @@ class _BottomNavBar extends StatelessWidget {
             Expanded(
               child: _NavItem(
                 label: "Home".tr,
-                noSelectIcon: ImageConstants.homeIconNoSelect,
-                selectIcon: ImageConstants.homeIconSelect,
+                icon: Icons.home,
                 active: currentIndex == 0,
                 onTap: () => onChanged(0),
               ),
             ),
             Expanded(
               child: _NavItem(
-                label: "Earnings".tr,
-                noSelectIcon: ImageConstants.earningNoSelect,
-                selectIcon: ImageConstants.earningSelect,
+                label: "Notifcation".tr,
+                icon: Icons.notifications,
                 active: currentIndex == 1,
                 onTap: () => onChanged(1),
               ),
             ),
             Expanded(
               child: _NavItem(
-                label: "Messages".tr,
-                noSelectIcon: ImageConstants.messageNoSelect,
-                selectIcon: ImageConstants.messageSelect,
+                label: "Profile".tr,
+                icon: Icons.person,
                 active: currentIndex == 2,
                 onTap: () => onChanged(2),
               ),
             ),
-            Expanded(
-              child: _NavItem(
-                label: "Profile".tr,
-                noSelectIcon: ImageConstants.profileNoSelect,
-                selectIcon: ImageConstants.profileSelect,
-                active: currentIndex == 3,
-                onTap: () => onChanged(3),
-              ),
-            ),
+          
           ],
         ),
       ),
@@ -104,14 +93,12 @@ class _BottomNavBar extends StatelessWidget {
 class _NavItem extends StatelessWidget {
   const _NavItem({
     required this.label,
-    required this.selectIcon,
-    required this.noSelectIcon,
+    required this.icon,
     required this.active,
     required this.onTap,
   });
   final String label;
-  final String selectIcon;
-  final String noSelectIcon;
+  final IconData icon;
   final bool active;
   final VoidCallback onTap;
   @override
@@ -125,10 +112,10 @@ class _NavItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              active ? selectIcon : noSelectIcon,
-              height: active ? 32 : 24,
-              width: active ? 32 : 24,
+            Icon(
+              icon,
+              size: active ? 32 : 24,
+              color: active ? activeColor : inactiveColor,
             ),
             const SizedBox(height: 6),
             Text(

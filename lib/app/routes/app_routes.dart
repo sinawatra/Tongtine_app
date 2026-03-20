@@ -6,11 +6,18 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const AUTHENTICATION = _Paths.AUTHENTICATION;
   static const SPLASH = _Paths.SPLASH;
+  static const APPSCREEN = _Paths.APPSCREEN;
+  static const NOTIFICATION = _Paths.NOTIFICATION;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
+  
   static const AUTHENTICATION = '/authentication';
   static const SPLASH = "/splash";
+  static const APPSCREEN = "/appscreen";
+  static const NOTIFICATION = "/notification";
+  static const PROFILE = "/profile";
 }

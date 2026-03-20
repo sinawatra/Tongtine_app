@@ -39,7 +39,7 @@ class AuthenticationController extends GetxController {
     final response = await authRepository.loginUser(phoneController.text, passwordController.text);
     if (response.success == true) {
       await secureStorageService.saveToken(response.body["token"] ?? '');
-      Get.offAndToNamed(Routes.HOME);
+      Get.offAndToNamed(Routes.APPSCREEN);
       LoadingDialog.dismiss();
       return;
     }

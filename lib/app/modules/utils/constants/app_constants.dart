@@ -55,6 +55,12 @@ class AppConstants {
   static const String getNotification = "api/v1/notifications";
   static const String markNotificationAsRead = "api/v1/notifications";
 
+  
+
+
+  //home 
+  static const String tontineGroup = "api/groups";
+
 
   
   
