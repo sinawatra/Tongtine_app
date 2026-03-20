@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:homework_app/app/modules/appscreen/binding/appscreen_binding.dart';
+import 'package:homework_app/app/modules/appscreen/views/appscreen_view.dart';
 import 'package:homework_app/app/modules/authentication/splash/splash.screen.dart';
 
 import '../modules/authentication/bindings/authentication_binding.dart';
@@ -18,6 +20,11 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+    ),
+      GetPage(
+      name: _Paths.APPSCREEN,
+      page: () => const AppscreenView(),
+      binding: AppscreenBinding(),
     ),
     GetPage(
       name: _Paths.SPLASH,
