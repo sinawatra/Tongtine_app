@@ -2,6 +2,10 @@ import 'package:get/get.dart';
 import 'package:homework_app/app/modules/appscreen/binding/appscreen_binding.dart';
 import 'package:homework_app/app/modules/appscreen/views/appscreen_view.dart';
 import 'package:homework_app/app/modules/authentication/splash/splash.screen.dart';
+import 'package:homework_app/app/modules/notification/binding%20/notification_binding.dart';
+import 'package:homework_app/app/modules/notification/view/notification_view.dart';
+import 'package:homework_app/app/modules/profile/binding/profile_binding.dart';
+import 'package:homework_app/app/modules/profile/view/profile_view.dart';
 
 import '../modules/authentication/bindings/authentication_binding.dart';
 import '../modules/authentication/views/authentication_view.dart';
@@ -27,8 +31,18 @@ class AppPages {
       binding: AppscreenBinding(),
     ),
     GetPage(
+      name: _Paths.NOTIFICATION,
+      page: () => const NotificationView(),
+      binding: NotificationBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
       name: _Paths.SPLASH,
-      page: () => const SplashScreen(),
+      page: () =>  SplashScreen(),
     ),
     GetPage(
       name: _Paths.AUTHENTICATION,

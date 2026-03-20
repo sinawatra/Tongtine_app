@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:homework_app/app/data/service/secure_storage_service.dart';
 import 'package:homework_app/app/data/service/storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,7 +10,9 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
+  final secureStorageService = SecureStorageService();
   Get.put(sharedPreferences);
+  Get.put(secureStorageService);
   await StorageService.init();
   runApp(
     GetMaterialApp(
