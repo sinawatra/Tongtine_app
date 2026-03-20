@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework_app/app/common/style/style.dart';
@@ -16,25 +18,64 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
-        title: const Text('ទំព័រដើម'),
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'ទំព័រដើម',
+          style: localizedTextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: AppColor.contentDefault,
+          ),
+        ),
       ),
-      body:  Obx(() => Skeletonizer(
-        enabled: controller.isLoading.value,
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  spacing: 12,
-                  children: [
+      extendBodyBehindAppBar: true,
+      body: Stack(
+        children: [
+          // Blue "Graffiti/Mesh" Background
+          Positioned.fill(
+            child: Container(
+              color: Colors.white,
+            ),
+          ),
+          Positioned(
+            top: 0,
+            right: -50,
+            child: Container(
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColor.alertDarkHover
+              ),
+            ),
+          ),
+         
+          // Blur effect for graffiti feel
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: Container(
+                color: Colors.transparent,
+              ),
+            ),
+          ),
+          
+          Obx(() => Skeletonizer(
+            enabled: controller.isLoading.value,
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 100, 16, 16),
+                    child: Column(
+                      spacing: 12,
+                      children: [
                     Row(
                       children: [
                         Expanded(
                           child: EarningSummaryCard(
-                            title: "totalUser".tr,
+                            title: "ចំនួនសមាជិកសរុប".tr,
                             backgroundColor: AppColor.infoLight,
                             amountText: controller.overView["totalUser"].toString(),
                             trailing: Icon(
@@ -47,7 +88,7 @@ class HomeView extends GetView<HomeController> {
                         const SizedBox(width: 12),
                         Expanded(
                           child: EarningSummaryCard(
-                            title: "totalGroup".tr,
+                            title: "ចំនួនក្រុមតុងទីនសរុប".tr,
                             backgroundColor: AppColor.successLight,
                             amountText: controller.overView["totalGroup"].toString(),
                             trailing: Icon(
@@ -63,7 +104,7 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Expanded(
                           child: EarningSummaryCard(
-                            title: "totalMoney".tr,
+                            title: "ប្រាក់សរុបនៃក្រុមតុងទីន".tr,
                             backgroundColor: AppColor.warningLight,
                             amountText: "\$${controller.overView["totalMoney"].toString()}",
                             trailing: Icon(
@@ -76,7 +117,7 @@ class HomeView extends GetView<HomeController> {
                         const SizedBox(width: 12),
                         Expanded(
                           child: EarningSummaryCard(
-                            title: "totalPendingKyc".tr,
+                            title: "ចំនួនការស្នើសុំKYC".tr,
                             backgroundColor: AppColor.alertLight,
                             amountText: controller.overView["totalPendingKyc"].toString(),
                             trailing: Icon(
@@ -93,20 +134,20 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "activeGroups".tr,
+                          "ក្រុមតុងទីន".tr,
                           style: localizedTextStyle(
                             fontSize: 18,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.bold,
                             color: AppColor.contentDefault,
                           ),
                         ),
                         TextButton(
                            onPressed: () => Get.toNamed(Routes.TONTINE_GROUP),
                            child: Text(
-                             "viewAll".tr,
+                             "មើលទាំងអស់".tr,
                              style: localizedTextStyle(
                                fontSize: 14,
-                               fontWeight: FontWeight.w600,
+                               fontWeight: FontWeight.bold,
                                color: AppColor.infoNormal,
                              ),
                            ),
@@ -131,7 +172,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            "noGroupsFound".tr,
+                            "មិនមានក្រុមតុងទីនទេ".tr,
                             style: localizedTextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
@@ -161,6 +202,8 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       )),
-    );
+    ],
+  ),
+);
   }
 }

@@ -61,7 +61,7 @@ class _BottomNavBar extends StatelessWidget {
           children: [
             Expanded(
               child: _NavItem(
-                label: "Home".tr,
+                label: "ទំព័រដើម".tr,
                 icon: Icons.home,
                 active: currentIndex == 0,
                 onTap: () => onChanged(0),
@@ -69,7 +69,7 @@ class _BottomNavBar extends StatelessWidget {
             ),
             Expanded(
               child: _NavItem(
-                label: "Notifcation".tr,
+                label: "ការជូនដំណឹង".tr,
                 icon: Icons.notifications,
                 active: currentIndex == 1,
                 onTap: () => onChanged(1),
@@ -77,7 +77,7 @@ class _BottomNavBar extends StatelessWidget {
             ),
             Expanded(
               child: _NavItem(
-                label: "Profile".tr,
+                label: "គណនី".tr,
                 icon: Icons.person,
                 active: currentIndex == 2,
                 onTap: () => onChanged(2),
@@ -104,7 +104,7 @@ class _NavItem extends StatelessWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    final activeColor = AppColor.greyBold;
+    final activeColor = AppColor.alertDarkHover;
     final inactiveColor = AppColor.contentSubtle;
     return GestureDetector(
       onTap: onTap,

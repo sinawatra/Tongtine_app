@@ -117,12 +117,12 @@ class TontineCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _StatColumn(
-                    title: 'Contribution',
+                    title: 'ចំនួនត្រូវចូលរួម',
                     value: '\$${contributionAmount.toStringAsFixed(2)}',
                     valueWeight: FontWeight.w600,
                   ),
                   _StatColumn(
-                    title: 'Start Date',
+                    title: 'ថ្ងៃចាប់ផ្តើម',
                     value: startDate ?? 'TBD',
                   ),
                 ],

@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:homework_app/app/data/service/dio_client.dart';
 import 'package:homework_app/app/data/service/secure_storage_service.dart';
 import 'package:homework_app/app/data/service/storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +15,17 @@ void main() async {
   final secureStorageService = SecureStorageService();
   Get.put(sharedPreferences);
   Get.put(secureStorageService);
+  
+  // Register Core Services globally
+  Get.lazyPut<Dio>(() => Dio(), fenix: true);
+  Get.lazyPut<DioClient>(
+    () => DioClient(
+      secureStorage: Get.find<SecureStorageService>(),
+      dio: Get.find<Dio>(),
+    ),
+    fenix: true,
+  );
+
   await StorageService.init();
   runApp(
     GetMaterialApp(

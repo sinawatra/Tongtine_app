@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework_app/app/common/style/style.dart';
@@ -68,10 +69,10 @@ class ProfileView extends GetView<ProfileController> {
     return SliverAppBar(
       expandedHeight: 260,
       pinned: true,
-      backgroundColor: const Color(0xFF102C90),
+      backgroundColor:  AppColor.alertDarkHover,
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
-          decoration: const BoxDecoration(gradient: AppColor.appBarGradient),
+          decoration: const BoxDecoration(color: AppColor.alertDarkHover),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -86,8 +87,7 @@ class ProfileView extends GetView<ProfileController> {
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,
-                          placeholder: (_, __) => const CircularProgressIndicator(
-                              color: Colors.white, strokeWidth: 2),
+                          placeholder: (_, __) => const CupertinoActivityIndicator(),
                           errorWidget: (_, __, ___) => const Icon(
                               Icons.person,
                               size: 50,
@@ -114,7 +114,7 @@ class ProfileView extends GetView<ProfileController> {
                   border: Border.all(color: Colors.white38),
                 ),
                 child: Text(
-                  user.role,
+                  user.role == 'ADMIN' ? 'អ្នកគ្រប់គ្រង' : 'អ្នកប្រើប្រាស់',
                   style: localizedTextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
@@ -132,15 +132,8 @@ class ProfileView extends GetView<ProfileController> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       decoration: BoxDecoration(
-        gradient: AppColor.appBarGradient,
+        color: AppColor.alertDarkHover,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF1B4CFA).withValues(alpha: 0.25),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Row(
         children: [
@@ -149,7 +142,7 @@ class ProfileView extends GetView<ProfileController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Available Balance',
+                  'ប្រាក់សរុប',
                   style: localizedTextStyle(
                       fontSize: 13,
                       color: Colors.white.withValues(alpha: 0.8)),
@@ -198,28 +191,114 @@ class ProfileView extends GetView<ProfileController> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
             child: Text(
-              'Personal Information',
+              'ព័ត៌មានអ្នកប្រើ',
               style: localizedTextStyle(
                   fontSize: 15, fontWeight: FontWeight.w700),
             ),
           ),
           const Divider(height: 1, color: AppColor.outlineSoftest),
-          _buildInfoRow(Icons.phone_outlined, 'Phone', user.phone),
+          _buildInfoRow(Icons.phone_outlined, 'ទូរស័ព្ទ', user.phone),
           const Divider(height: 1, indent: 56, color: AppColor.outlineSoftest),
           _buildInfoRow(
-              Icons.email_outlined, 'Email', user.email ?? 'Not provided'),
+              Icons.email_outlined, 'អ៊ីម៉ែល', user.email ?? 'មិនមានអ៊ីម៉ែល'),
           const Divider(height: 1, indent: 56, color: AppColor.outlineSoftest),
           _buildInfoRow(
             user.kycVerified
                 ? Icons.verified_user_outlined
                 : Icons.shield_outlined,
-            'KYC Status',
-            user.kycVerified ? 'Verified' : 'Pending',
+            'ស្ថានភាព KYC',
+            user.kycVerified ? 'ត្រួតពិនិត្យរួចរាល់' : 'មិនត្រួតពិនិត្យទេ',
             valueColor: user.kycVerified ? Colors.green : Colors.orange,
           ),
           const Divider(height: 1, indent: 56, color: AppColor.outlineSoftest),
-          _buildInfoRow(Icons.badge_outlined, 'Role', user.role),
-          const SizedBox(height: 8),
+          _buildInfoRow(
+              Icons.badge_outlined, 'តួនាទី', user.role == 'ADMIN'
+                  ? 'អ្នកគ្រប់គ្រង'
+                  : 'អ្នកប្រើប្រាស់'),
+          const Divider(height: 1, color: AppColor.outlineSoftest),
+          _buildLogoutButton(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLogoutButton() {
+    return InkWell(
+      onTap: _showLogoutConfirmation,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColor.alertLight,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Icon(Icons.logout_rounded,
+                  size: 20, color: AppColor.alertNormal),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                'ចាកចេញពីគណនី',
+                style: localizedTextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.alertNormal),
+              ),
+            ),
+            const Icon(Icons.chevron_right,
+                size: 20, color: AppColor.contentPlaceholder),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showLogoutConfirmation() {
+    Get.dialog(
+      AlertDialog(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text(
+          'ចាកចេញពីគណនី?',
+          style: localizedTextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        content: Text(
+          'តើអ្នកប្រាកដថាចង់ចាកចេញពីគណនីមែនទេ?',
+          style: localizedTextStyle(fontSize: 14, color: AppColor.contentDim),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text(
+              'បោះបង់',
+              style: localizedTextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.contentDim),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Get.back();
+              controller.logout();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColor.alertNormal,
+              foregroundColor: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+            child: Text(
+              'ចាកចេញ',
+              style: localizedTextStyle(
+                  fontSize: 14, fontWeight: FontWeight.w600),
+            ),
+          ),
         ],
       ),
     );

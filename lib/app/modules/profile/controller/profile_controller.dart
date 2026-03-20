@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:homework_app/app/data/service/secure_storage_service.dart';
 import 'package:homework_app/app/modules/profile/models/user_model.dart';
 import 'package:homework_app/app/modules/profile/repository/profile_repository.dart';
+import 'package:homework_app/app/routes/app_pages.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class ProfileController extends GetxController {
@@ -54,6 +55,16 @@ class ProfileController extends GetxController {
       errorMessage.value = 'Failed to load profile';
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await secureStorageService.clearAll();
+      Get.offAllNamed(Routes.AUTHENTICATION);
+    } catch (e) {
+      log('Error during logout: $e');
+      Get.snackbar('Error', 'Failed to logout');
     }
   }
 }

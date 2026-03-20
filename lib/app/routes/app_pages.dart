@@ -57,6 +57,7 @@ class AppPages {
       name: _Paths.KYC,
       page: () => const KycScreen(),
       binding: AuthenticationBinding(),
+    ),
     GetPage(
       name: _Paths.TONTINE_GROUP,
       page: () => const TontineGroupView(),

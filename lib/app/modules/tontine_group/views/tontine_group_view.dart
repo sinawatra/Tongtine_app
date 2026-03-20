@@ -17,7 +17,7 @@ class TontineGroupView extends GetView<TontineGroupController> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "activeGroups".tr,
+          "ក្រុមតុងទីនសកម្ម".tr,
           style: localizedTextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -38,7 +38,7 @@ class TontineGroupView extends GetView<TontineGroupController> {
             child: TextField(
               onChanged: controller.onSearch,
               decoration: InputDecoration(
-                hintText: "Search group...",
+                hintText: "ស្វែងរកក្រុម",
                 prefixIcon: const Icon(Icons.search, color: AppColor.contentDim),
                 filled: true,
                 fillColor: AppColor.backgroundAlt,

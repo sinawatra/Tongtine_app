@@ -118,7 +118,7 @@ class _TontineGroupDetailsState extends State<TontineGroupDetails> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          'groupDetails'.tr,
+          'ការពិនិត្យក្រុមតុងទីនសកម្ម'.tr,
           style: localizedTextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -302,7 +302,7 @@ class _TontineGroupDetailsState extends State<TontineGroupDetails> {
           child: ElevatedButton(
             onPressed: () => controller.joinGroup(groupId),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColor.infoNormal,
+              backgroundColor: AppColor.alertDarkHover,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -310,7 +310,7 @@ class _TontineGroupDetailsState extends State<TontineGroupDetails> {
               elevation: 0,
             ),
             child: Text(
-              "Join Group",
+              "ចូលក្រុម",
               style: localizedTextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -325,14 +325,14 @@ class _TontineGroupDetailsState extends State<TontineGroupDetails> {
           child: OutlinedButton(
             onPressed: () => _showPayoutDialog(groupId),
             style: OutlinedButton.styleFrom(
-              side: const BorderSide(color: AppColor.infoNormal),
-              foregroundColor: AppColor.infoNormal,
+              side: const BorderSide(color: AppColor.alertDarkHover),
+              foregroundColor: AppColor.alertDarkHover,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
             child: Text(
-              "Trigger Payout",
+              "បាញ់លុយ",
               style: localizedTextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -349,7 +349,7 @@ class _TontineGroupDetailsState extends State<TontineGroupDetails> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Group Members",
+          "សមាជិកក្រុម",
           style: localizedTextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -408,7 +408,7 @@ class _TontineGroupDetailsState extends State<TontineGroupDetails> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          member["payoutOrder"] == 1 ? "First Payout" : "Winner",
+                          member["payoutOrder"] == 1 ? "First Payout" : "Pay after the first winner",
                           style: localizedTextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w700,
