@@ -1,4 +1,5 @@
 
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:homework_app/app/data/service/dio_client.dart';
 import 'package:homework_app/app/modules/home/controllers/home_controller.dart';
@@ -11,6 +12,7 @@ import '../controllers/appscreen_controller.dart';
 class AppscreenBinding extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut<Dio>(() => Dio());
     Get.lazyPut<DioClient>(
       () => DioClient(
         secureStorage: Get.find(),
@@ -35,7 +37,7 @@ class AppscreenBinding extends Bindings {
     ));
     Get.lazyPut<ProfileController>(
       () => ProfileController(
-        profileRepository: Get.find(),
+        profileRepository: Get.find(), secureStorageService: Get.find(),
       ),
     );
   

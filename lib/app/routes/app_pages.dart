@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:homework_app/app/modules/appscreen/binding/appscreen_binding.dart';
 import 'package:homework_app/app/modules/appscreen/views/appscreen_view.dart';
 import 'package:homework_app/app/modules/authentication/splash/splash.screen.dart';
+import 'package:homework_app/app/modules/kyc/kyc_screen.dart';
 import 'package:homework_app/app/modules/notification/binding%20/notification_binding.dart';
 import 'package:homework_app/app/modules/notification/view/notification_view.dart';
 import 'package:homework_app/app/modules/profile/binding/profile_binding.dart';
@@ -47,6 +48,11 @@ class AppPages {
     GetPage(
       name: _Paths.AUTHENTICATION,
       page: () => const AuthenticationView(),
+      binding: AuthenticationBinding(),
+    ),
+     GetPage(
+      name: _Paths.KYC,
+      page: () => const KycScreen(),
       binding: AuthenticationBinding(),
     ),
   ];

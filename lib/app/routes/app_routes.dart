@@ -9,6 +9,7 @@ abstract class Routes {
   static const APPSCREEN = _Paths.APPSCREEN;
   static const NOTIFICATION = _Paths.NOTIFICATION;
   static const PROFILE = _Paths.PROFILE;
+  static const KYC = _Paths.KYC;
 }
 
 abstract class _Paths {
@@ -20,4 +21,5 @@ abstract class _Paths {
   static const APPSCREEN = "/appscreen";
   static const NOTIFICATION = "/notification";
   static const PROFILE = "/profile";
+  static const KYC = "/kyc";
 }

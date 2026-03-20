@@ -58,8 +58,11 @@ class AppConstants {
   
 
 
-  //home 
+  //home
   static const String tontineGroup = "api/groups";
+
+  //users
+  static const String users = "api/users";
 
 
   
