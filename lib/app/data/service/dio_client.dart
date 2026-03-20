@@ -5,6 +5,7 @@ import 'package:homework_app/app/data/service/api_client.dart';
 import 'package:homework_app/app/data/service/base_response.dart';
 import 'package:homework_app/app/data/service/interceptors.dart';
 import 'package:homework_app/app/data/service/secure_storage_service.dart';
+import 'package:homework_app/app/modules/utils/constants/app_constants.dart';
 
 class DioClient implements ApiClient {
   final Dio dio;
@@ -12,7 +13,7 @@ class DioClient implements ApiClient {
 
   DioClient({required this.dio, required this.secureStorage}) {
     dio
-      ..options.baseUrl = ""
+      ..options.baseUrl = AppConstants.baseURLDev
       ..options.connectTimeout = const Duration(seconds: 30)
       ..options.receiveTimeout = const Duration(seconds: 30)
       ..interceptors.addAll([

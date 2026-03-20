@@ -37,7 +37,7 @@ class AuthenticationController extends GetxController {
       LoadingDialog.showDialog();
     final response = await authRepository.loginUser(phoneController.text, passwordController.text);
     if (response.success == true) {
-      await secureStorageService.saveToken(response.body.token ?? '');
+      await secureStorageService.saveToken(response.body["token"] ?? '');
       LoadingDialog.dismiss();
       return;
     }
