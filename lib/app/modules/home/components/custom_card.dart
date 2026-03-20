@@ -11,6 +11,7 @@ class TontineCard extends StatelessWidget {
     required this.totalMembers,
     required this.startDate,
     required this.status,
+    this.groupId,
     this.imageUrl,
     this.onTap,
     this.onMore,
@@ -22,6 +23,7 @@ class TontineCard extends StatelessWidget {
   final String? startDate;
   final String status;
   final String? imageUrl;
+  final dynamic groupId; // Added groupId
   final VoidCallback? onTap;
   final VoidCallback? onMore;
 
@@ -42,10 +44,17 @@ class TontineCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(
-              color: status == "IN_PROGRESS" ? AppColor.greyBold : _border,
+              color: _border,
               width: 1,
             ),
             borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,6 +88,9 @@ class TontineCard extends StatelessWidget {
                       ],
                     ),
                   ),
+
+                  _StatusBadge(status: status),
+                  const SizedBox(width: 8),
 
                   if (onMore != null)
                     InkWell(
@@ -117,6 +129,56 @@ class TontineCard extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StatusBadge extends StatelessWidget {
+  const _StatusBadge({required this.status});
+
+  final String status;
+
+  @override
+  Widget build(BuildContext context) {
+    Color bgColor;
+    Color textColor;
+    String label = status;
+
+    switch (status) {
+      case "IN_PROGRESS":
+        bgColor = AppColor.infoLight;
+        textColor = AppColor.infoNormal;
+        label = "In Progress";
+        break;
+      case "COMPLETED":
+        bgColor = AppColor.successLight;
+        textColor = AppColor.successNormal;
+        label = "Completed";
+        break;
+      case "PENDING":
+        bgColor = AppColor.warningLight;
+        textColor = AppColor.warningNormal;
+        label = "Pending";
+        break;
+      default:
+        bgColor = AppColor.outlineSoftest;
+        textColor = AppColor.contentDim;
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: Text(
+        label,
+        style: localizedTextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          color: textColor,
         ),
       ),
     );
