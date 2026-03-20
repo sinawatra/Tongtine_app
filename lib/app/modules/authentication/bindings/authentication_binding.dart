@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:homework_app/app/data/service/dio_client.dart';
 import 'package:homework_app/app/data/service/secure_storage_service.dart';
 import 'package:homework_app/app/modules/authentication/repository/authentication_repository.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controllers/authentication_controller.dart';
 
