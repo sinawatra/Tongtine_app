@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework_app/app/common/widgets/custom_loading_dialog.dart';
@@ -5,6 +7,12 @@ import 'package:homework_app/app/data/service/secure_storage_service.dart' show 
 import 'package:homework_app/app/modules/authentication/repository/authentication_repository.dart';
 import 'package:homework_app/app/routes/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+
+enum StartPageState {
+  login,
+  register,
+}
 
 class AuthenticationController extends GetxController {
   final AuthRepository authRepository;  
@@ -18,8 +26,10 @@ class AuthenticationController extends GetxController {
   final bool _isTypingCompleted = false;
 
   bool get isTypingCompleted => _isTypingCompleted;
+  Rx<StartPageState> appStartState = StartPageState.login.obs;
 
 
+  final TextEditingController fullNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -40,6 +50,31 @@ class AuthenticationController extends GetxController {
     if (response.success == true) {
       await secureStorageService.saveToken(response.body["token"] ?? '');
       Get.offAndToNamed(Routes.APPSCREEN);
+      LoadingDialog.dismiss();
+      return;
+    }
+    Get.snackbar("Error", response.message ?? '');
+    LoadingDialog.dismiss();
+  }
+  Future<void> signUp() async {
+    if (fullNameController.text.isEmpty) {
+      Get.snackbar("Error", "Please enter full name");
+      return;
+    }
+    if (phoneController.text.isEmpty) {
+      Get.snackbar("Error", "Please enter phone number");
+      return;
+    }
+    if (passwordController.text.isEmpty) {
+      Get.snackbar("Error", "Please enter password");
+      return;
+    }
+      LoadingDialog.showDialog();
+    final response = await authRepository.registerUser(fullNameController.text, phoneController.text, passwordController.text);
+    log("messagednlafladnlf ${response.body}");
+    if (response.success == true) {
+      await secureStorageService.saveToken(response.body["token"] ?? '');
+      Get.offAndToNamed(Routes.KYC);
       LoadingDialog.dismiss();
       return;
     }

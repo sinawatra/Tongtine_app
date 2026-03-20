@@ -37,7 +37,7 @@ class AppscreenBinding extends Bindings {
     ));
     Get.lazyPut<ProfileController>(
       () => ProfileController(
-        profileRepository: Get.find(),
+        profileRepository: Get.find(), secureStorageService: Get.find(),
       ),
     );
   

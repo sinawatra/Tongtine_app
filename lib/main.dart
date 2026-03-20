@@ -20,20 +20,45 @@ void main() async {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       showPerformanceOverlay: false,
-      debugShowCheckedModeBanner: false,
-      fallbackLocale: Locale('en', 'US'),
-      //  translations: AppTranslations(),R
+      debugShowCheckedModeBanner: false, // Fixed the typo here
+      fallbackLocale: const Locale('en', 'US'),
       builder: (BuildContext context, Widget? child) {
-          return EasyLoading.init()(
-            context,
-            Stack(
-              children: [
-                child!,
-                // const NoInternetOverlay(),
-              ],
-            ),
-          );
-        }
+        // 1. Initialize EasyLoading
+        final easyLoadingBuilder = EasyLoading.init();
+
+        // 2. Wrap child in the Stack for overlays
+        return easyLoadingBuilder(
+          context,
+          Stack(
+            children: [
+              if (child != null) child,
+              // const NoInternetOverlay(),
+            ],
+          ),
+        );
+      },
     ),
   );
+  // runApp(
+  //   GetMaterialApp(
+  //     title: "Application",
+  //     initialRoute: AppPages.INITIAL,
+  //     getPages: AppPages.routes,
+  //     showPerformanceOverlay: false,
+  //     // debugShowChStileckedModeBanner: false,
+  //     fallbackLocale: Locale('en', 'US'),
+  //     //  translations: AppTranslations(),R
+  //     builder: (BuildContext context, Widget? child) {
+  //         return EasyLoading.init()(
+  //           context,
+  //           Stack(
+  //             children: [
+  //               child!,
+  //               // const NoInternetOverlay(),
+  //             ],
+  //           ),
+  //         );
+  //       }
+  //   ),
+  // );
 }
